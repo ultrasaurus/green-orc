@@ -26,3 +26,20 @@ call server directly with vrpc:
 ```
 $V_BIN/vrpc --v23.credentials $ORC_PATH/cred/basics call "/$IP_ADDR:$PORT" Get
 ```
+
+or discover its methods:
+```
+$V_BIN/vrpc --v23.credentials $ORC_PATH/cred/basics signature "/$IP_ADDR:$PORT"
+```
+which returns the interface:
+```
+type "hello/ifc".Hello interface {
+  // Returns a greeting.
+  Get() (greeting string | error)
+}
+```
+
+or just find info about a single method:
+```
+$V_BIN/vrpc --v23.credentials $ORC_PATH/cred/basics signature "/$IP_ADDR:$PORT" Get
+```

@@ -48,12 +48,16 @@ $V_BIN/vrpc --v23.credentials $ORC_PATH/cred/basics signature "/$IP_ADDR:$PORT" 
 
 ## Manually transfer a blessing
 
+Given two Principals (Judy with "judy" blessing and Sarah with the "sarah" blessing), Judy blesses Sarah as her friend. This lets Sarah's client access Judy's server.
+
+0. Judy starts her server: ```bin/server --v23.credentials cred/judy --v23.tcp.address ":$PORT" &```
 1. Sarah: ```export PUBLIC_KEY=`$V_BIN/principal --v23.credentials cred/sarah get publickey` ```
    then sends $PUBLIC_KEY to Judy (via text message)
-3. Judy: ```export BLESSING=`echo $PUBLIC_KEY | $V_BIN/principal bless --v23.credentials cred/judy --for=24h - friend:sarah` ```
+2. Judy: ```export BLESSING=`echo $PUBLIC_KEY | $V_BIN/principal bless --v23.credentials cred/judy --for=24h - friend:sarah` ```
    then sends $BLESSING to Sarah (via text message)
 3. Sarah: ```echo $BLESSING | $V_BIN/principal --v23.credentials $V_TUT/cred/sarah set forpeer - judy```
 4. Sarah:
+
 ```
 $V_BIN/principal --v23.credentials cred/sarah dump
 

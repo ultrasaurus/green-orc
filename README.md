@@ -21,3 +21,8 @@ run the client
 ```
 bin/client --v23.credentials $ORC_PATH/cred/basics --server "/$IP_ADDR:$PORT"
 ```
+
+call server directly with vrpc:
+```
+$V_BIN/vrpc --v23.credentials $ORC_PATH/cred/basics call "/$IP_ADDR:$PORT" Get
+```
